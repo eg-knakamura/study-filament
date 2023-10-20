@@ -66,3 +66,16 @@ services:
         published: ${MAILHOG_PUBLISHED_PORT:-8025}
         protocol: tcp
         mode: host
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=${DB_USERNAME:-phper}
+      - PMA_PASSWORD=${DB_PASSWORD:-secret}
+    links:
+      - db:db
+    ports:
+      - 8888:80
+    volumes:
+      - /sessions
