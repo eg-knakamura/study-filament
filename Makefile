@@ -23,6 +23,7 @@ install-recommend-packages:
 	docker compose exec app php artisan vendor:publish --provider="BeyondCode\DumpServer\DumpServerServiceProvider"
 	docker compose exec app php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 init:
+	@make node-yarn-install
 	docker compose up -d --build
 	docker compose exec app composer install
 	docker compose exec app cp .env.example .env
@@ -105,3 +106,9 @@ ide-helper:
 	docker compose exec app php artisan ide-helper:generate
 	docker compose exec app php artisan ide-helper:meta
 	docker compose exec app php artisan ide-helper:models --nowrite
+ # node コンテナ yarn install 実行
+node-yarn-install:
+	docker-compose run --rm node yarn install --frozen-lockfile
+# node コンテナ 入る
+node:
+	docker compose exec node bash
