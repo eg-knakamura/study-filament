@@ -112,3 +112,11 @@ node-yarn-install:
 # node コンテナ 入る
 node:
 	docker compose exec node bash
+# 管理画面init
+admin-init:
+	docker compose exec app php artisan db:seed
+admin-make-seeder:
+	@make admin-make-target-seeder ARG=users
+# admin-make-target-seeder ARG=users
+admin-make-target-seeder:
+	docker compose exec app php artisan iseed $(ARG) --force
