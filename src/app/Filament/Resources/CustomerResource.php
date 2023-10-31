@@ -102,7 +102,16 @@ class CustomerResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([Tables\Actions\EditAction::make()])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make("personal")->url(function (
+                    Customer $record
+                ) {
+                    return static::getUrl("customers-personal", [
+                        "record" => $record->id,
+                    ]);
+                }),
+            ])
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }
 
@@ -119,6 +128,9 @@ class CustomerResource extends Resource
             "index" => Pages\ListCustomers::route("/"),
             "create" => Pages\CreateCustomer::route("/create"),
             "customers-other" => Pages\CustomersOther::route("customers-other"),
+            "customers-personal" => Pages\CustomerPersonal::route(
+                "/{record}/customers-personal"
+            ),
             "edit" => Pages\EditCustomer::route("/{record}/edit"),
         ];
     }
