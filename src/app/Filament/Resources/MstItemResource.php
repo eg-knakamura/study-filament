@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MstItemResource\Pages;
 use App\Filament\Resources\MstItemResource\RelationManagers;
-use App\Models\Customer;
 use App\Models\MstItem;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -52,14 +51,6 @@ class MstItemResource extends Resource
                         );
                     })
                     ->sortable()
-                    ->getStateUsing(function (Customer $record): string {
-                        return $record->name_sei . $record->name_mei;
-                    })
-                    ->searchable(
-                        condition: ["name_sei", "name_mei"],
-                        isIndividual: true,
-                        isGlobal: false
-                    ),
             ])
             ->filters([
                 //
