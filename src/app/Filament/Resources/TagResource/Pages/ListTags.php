@@ -12,8 +12,19 @@ class ListTags extends ListRecords
 
     protected function getActions(): array
     {
+        return [Actions\CreateAction::make()];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
         return [
-            Actions\CreateAction::make(),
+            TagResource\Widgets\CustomerOverview::class,
+            TagResource\Widgets\TagHeaderOverview::class,
         ];
+    }
+
+    protected function getFooterWidgets(): array
+    {
+        return [TagResource\Widgets\TagFooterOverview::class];
     }
 }

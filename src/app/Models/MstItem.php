@@ -7,25 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Post
+ * Class MstItem
  *
  * @property int $id
- * @property string $title
- * @property string $sub_title
- * @property string $body
+ * @property string $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
  * @package App\Models
  */
-class Post extends Model
+class MstItem extends Model
 {
     use HasFactory;
-    protected $fillable = ["title", "sub_title", "body"]; //追加
 
-    //下記も追加
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
+    protected $fillable = ["name"]; //追加
 }
