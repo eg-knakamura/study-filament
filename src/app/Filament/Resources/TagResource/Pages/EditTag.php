@@ -12,9 +12,16 @@ class EditTag extends EditRecord
 
     protected function getActions(): array
     {
-        return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
-        ];
+        return [Actions\ViewAction::make(), Actions\DeleteAction::make()];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [TagResource\Widgets\TagHeaderOverview::class];
+    }
+
+    protected function getFooterWidgets(): array
+    {
+        return [TagResource\Widgets\TagFooterOverview::class];
     }
 }

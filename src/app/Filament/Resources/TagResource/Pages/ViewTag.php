@@ -12,8 +12,16 @@ class ViewTag extends ViewRecord
 
     protected function getActions(): array
     {
-        return [
-            Actions\EditAction::make(),
-        ];
+        return [Actions\EditAction::make()];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [TagResource\Widgets\TagHeaderOverview::class];
+    }
+
+    protected function getFooterWidgets(): array
+    {
+        return [TagResource\Widgets\TagFooterOverview::class];
     }
 }

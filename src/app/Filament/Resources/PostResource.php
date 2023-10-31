@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PostResource extends Resource
 {
@@ -27,6 +24,10 @@ class PostResource extends Resource
                 ->required()
                 ->label("タイトル")
                 ->hint("ブログのタイトル入力"),
+            Forms\Components\TextInput::make("sub_title")
+                ->required()
+                ->label("サブタイトル")
+                ->hint("ブログのサブタイトル入力"),
             Forms\Components\Textarea::make("body")
                 ->required()
                 ->label("本文")
@@ -40,12 +41,20 @@ class PostResource extends Resource
         return $table
             ->columns([
                 // ここに表示したい項目を追加する
-                Tables\Columns\TextColumn::make("title")->label("タイトル"),
+                Tables\Columns\TextColumn::make("title")
+                    ->label("タイトル")
+                    ->sortable()
+                    ->getStateUsing(function (Post $record): string {
+                        return $record->title . $record->sub_title;
+                    })
+                    ->searchable(
+                        condition: ["title", "sub_title"],
+                        isIndividual: true,
+                        isGlobal: false
+                    ),
                 Tables\Columns\TextColumn::make("body")->label("本文"),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
