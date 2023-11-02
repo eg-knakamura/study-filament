@@ -11,9 +11,9 @@ class CustomerPersonal extends Page
 
     protected static string $view = "filament.resources.customer-resource.pages.customer-personal";
 
-    public string $recordData;
-    public function mount(string $record): void
+    public string $customerId;
+    public function mount(string $customerId): void
     {
-        $this->recordData = $record;
+        $this->customerId = $customerId;
     }
 }

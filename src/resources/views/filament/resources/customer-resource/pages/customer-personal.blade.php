@@ -1,3 +1,3 @@
 <x-filament::page>
-    <p>customer-personal {{$recordData}}</p>
+    <p>customer-personal {{$customerId}}</p>
 </x-filament::page>

@@ -108,7 +108,7 @@ class CustomerResource extends Resource
                     Customer $record
                 ) {
                     return static::getUrl("customers-personal", [
-                        "record" => $record->id,
+                        "customerId" => $record->id,
                     ]);
                 }),
             ])
@@ -129,7 +129,7 @@ class CustomerResource extends Resource
             "create" => Pages\CreateCustomer::route("/create"),
             "customers-other" => Pages\CustomersOther::route("customers-other"),
             "customers-personal" => Pages\CustomerPersonal::route(
-                "/{record}/customers-personal"
+                "/{customerId}/customers-personal"
             ),
             "edit" => Pages\EditCustomer::route("/{record}/edit"),
         ];
