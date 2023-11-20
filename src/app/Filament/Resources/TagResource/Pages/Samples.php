@@ -7,10 +7,10 @@ use App\Filament\Widgets\TagSampls;
 use App\Http\Livewire\TagList;
 use App\Models\Tag;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Pages\Page;
 use Filament\Pages\Actions;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Contracts\View\View;
@@ -28,7 +28,7 @@ class Samples extends Page
 
     public ?array $data = [];
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(), // タグ作成リンクボタン設置
