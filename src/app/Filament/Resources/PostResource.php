@@ -23,16 +23,19 @@ class PostResource extends Resource
             Forms\Components\TextInput::make("title")
                 ->required()
                 ->label("タイトル")
-                ->hint("ブログのタイトル入力"),
+                ->hint("ブログのタイトル入力")
+                ->live(),
             Forms\Components\TextInput::make("sub_title")
                 ->required()
                 ->label("サブタイトル")
-                ->hint("ブログのサブタイトル入力"),
+                ->hint("ブログのサブタイトル入力")
+                ->live(),
             Forms\Components\Textarea::make("body")
                 ->required()
                 ->label("本文")
                 ->helperText("本文を入力します")
-                ->columnSpan("full"),
+                ->columnSpan("full")
+                ->live(),
         ]);
     }
 
